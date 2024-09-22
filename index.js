@@ -1,36 +1,32 @@
 // We get all the slider elements
-const images = document.querySelectorAll('.slider-images img');
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
-const imageCounter = document.querySelector('.image-counter');
-
-let currentIndex = 0;
-
+var images = document.querySelectorAll('.slider-images img');
+var prevButton = document.querySelector('.prev');
+var nextButton = document.querySelector('.next');
+var imageCounter = document.querySelector('.image-counter');
+var currentIndex = 0;
 // Function for displaying the current image
-function showImage(index: number): void {
-    images.forEach((img, i) => {
+function showImage(index) {
+    images.forEach(function (img, i) {
         img.classList.remove('active');
         if (i === index) {
             img.classList.add('active');
         }
     });
-
     // Updating the number of the current image
     if (imageCounter) {
-        imageCounter.textContent = `Image ${index + 1} of ${images.length}`;
+        imageCounter.textContent = "Image ".concat(index + 1, " of ").concat(images.length);
     }
 }
-
 // The handler of the "Forward" button
 if (nextButton) {
-    nextButton.addEventListener('click', () => {
+    nextButton.addEventListener('click', function () {
         currentIndex = (currentIndex + 1) % images.length;
         showImage(currentIndex);
     });
 }
 // The handler of the "Back" button
 if (prevButton) {
-    prevButton.addEventListener('click', () => {
+    prevButton.addEventListener('click', function () {
         currentIndex = (currentIndex - 1 + images.length) % images.length;
         showImage(currentIndex);
     });
